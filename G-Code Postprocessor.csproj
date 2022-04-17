@@ -15,7 +15,7 @@
     <FileVersion>0.1</FileVersion>
     <AssemblyVersion>0.1</AssemblyVersion>
     <NeutralLanguage>ru-RU</NeutralLanguage>
-    <AssemblyName>$(MSBuildProjectName) $(VersionPrefix)</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName) v0.1</AssemblyName>
     <Version>0.1.0</Version>
   </PropertyGroup>
 
