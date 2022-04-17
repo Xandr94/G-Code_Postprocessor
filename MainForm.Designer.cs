@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.gBoxGcode = new System.Windows.Forms.GroupBox();
+            this.tBoxGcode = new System.Windows.Forms.RichTextBox();
             this.btGenerateGcode = new System.Windows.Forms.Button();
             this.btSaveGcode = new System.Windows.Forms.Button();
             this.gBoxTransitions = new System.Windows.Forms.GroupBox();
+            this.btUpdateTransitions = new System.Windows.Forms.Button();
             this.btAddTransition = new System.Windows.Forms.Button();
             this.btRemoveTransition = new System.Windows.Forms.Button();
             this.lBoxTransitions = new System.Windows.Forms.ListBox();
@@ -40,7 +42,6 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.tBoxGcode = new System.Windows.Forms.RichTextBox();
             this.gBoxGcode.SuspendLayout();
             this.gBoxTransitions.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -59,13 +60,22 @@
             this.gBoxGcode.TabStop = false;
             this.gBoxGcode.Text = "G-Code";
             // 
+            // tBoxGcode
+            // 
+            this.tBoxGcode.Location = new System.Drawing.Point(6, 22);
+            this.tBoxGcode.Name = "tBoxGcode";
+            this.tBoxGcode.Size = new System.Drawing.Size(188, 364);
+            this.tBoxGcode.TabIndex = 7;
+            this.tBoxGcode.Text = "";
+            this.tBoxGcode.WordWrap = false;
+            // 
             // btGenerateGcode
             // 
             this.btGenerateGcode.Location = new System.Drawing.Point(6, 397);
             this.btGenerateGcode.Name = "btGenerateGcode";
             this.btGenerateGcode.Size = new System.Drawing.Size(75, 23);
-            this.btGenerateGcode.TabIndex = 1;
-            this.btGenerateGcode.Text = "Создать";
+            this.btGenerateGcode.TabIndex = 3;
+            this.btGenerateGcode.Text = "Обновить";
             this.btGenerateGcode.UseVisualStyleBackColor = true;
             this.btGenerateGcode.Click += new System.EventHandler(this.btGenerateGcode_Click);
             // 
@@ -74,13 +84,14 @@
             this.btSaveGcode.Location = new System.Drawing.Point(119, 397);
             this.btSaveGcode.Name = "btSaveGcode";
             this.btSaveGcode.Size = new System.Drawing.Size(75, 23);
-            this.btSaveGcode.TabIndex = 0;
+            this.btSaveGcode.TabIndex = 4;
             this.btSaveGcode.Text = "Сохранить";
             this.btSaveGcode.UseVisualStyleBackColor = true;
             this.btSaveGcode.Click += new System.EventHandler(this.btSaveGcode_Click);
             // 
             // gBoxTransitions
             // 
+            this.gBoxTransitions.Controls.Add(this.btUpdateTransitions);
             this.gBoxTransitions.Controls.Add(this.btAddTransition);
             this.gBoxTransitions.Controls.Add(this.btRemoveTransition);
             this.gBoxTransitions.Controls.Add(this.lBoxTransitions);
@@ -91,12 +102,22 @@
             this.gBoxTransitions.TabStop = false;
             this.gBoxTransitions.Text = "Переходы операции";
             // 
+            // btUpdateTransitions
+            // 
+            this.btUpdateTransitions.Location = new System.Drawing.Point(283, 397);
+            this.btUpdateTransitions.Name = "btUpdateTransitions";
+            this.btUpdateTransitions.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateTransitions.TabIndex = 2;
+            this.btUpdateTransitions.Text = "Обновить";
+            this.btUpdateTransitions.UseVisualStyleBackColor = true;
+            this.btUpdateTransitions.Click += new System.EventHandler(this.btUpdateTransitions_Click);
+            // 
             // btAddTransition
             // 
-            this.btAddTransition.Location = new System.Drawing.Point(87, 397);
+            this.btAddTransition.Location = new System.Drawing.Point(202, 397);
             this.btAddTransition.Name = "btAddTransition";
             this.btAddTransition.Size = new System.Drawing.Size(75, 23);
-            this.btAddTransition.TabIndex = 2;
+            this.btAddTransition.TabIndex = 0;
             this.btAddTransition.Text = "Добавить";
             this.btAddTransition.UseVisualStyleBackColor = true;
             this.btAddTransition.Click += new System.EventHandler(this.btAddTransition_Click);
@@ -107,18 +128,27 @@
             this.btRemoveTransition.Location = new System.Drawing.Point(6, 397);
             this.btRemoveTransition.Name = "btRemoveTransition";
             this.btRemoveTransition.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveTransition.TabIndex = 1;
+            this.btRemoveTransition.TabIndex = 5;
             this.btRemoveTransition.Text = "Удалить";
             this.btRemoveTransition.UseVisualStyleBackColor = true;
+            this.btRemoveTransition.Click += new System.EventHandler(this.btRemoveTransition_Click);
             // 
             // lBoxTransitions
             // 
             this.lBoxTransitions.FormattingEnabled = true;
+            this.lBoxTransitions.HorizontalScrollbar = true;
             this.lBoxTransitions.ItemHeight = 15;
             this.lBoxTransitions.Location = new System.Drawing.Point(6, 22);
             this.lBoxTransitions.Name = "lBoxTransitions";
             this.lBoxTransitions.Size = new System.Drawing.Size(352, 364);
-            this.lBoxTransitions.TabIndex = 0;
+            this.lBoxTransitions.TabIndex = 6;
+            this.lBoxTransitions.SelectedIndexChanged += new System.EventHandler(this.lBoxTransitions_SelectedIndexChanged);
+
+            //Для переноса слов
+            this.lBoxTransitions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.lBoxTransitions.MeasureItem += lst_MeasureItem;
+            this.lBoxTransitions.DrawItem += lst_DrawItem;
+
             // 
             // groupBox1
             // 
@@ -177,14 +207,6 @@
             this.radioButton1.Text = "Токарная 3x";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // tBoxGcode
-            // 
-            this.tBoxGcode.Location = new System.Drawing.Point(6, 22);
-            this.tBoxGcode.Name = "tBoxGcode";
-            this.tBoxGcode.Size = new System.Drawing.Size(188, 364);
-            this.tBoxGcode.TabIndex = 2;
-            this.tBoxGcode.Text = "";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -198,6 +220,8 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "G-Code Постпроцессор";
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.gBoxGcode.ResumeLayout(false);
             this.gBoxTransitions.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -222,5 +246,6 @@
         private RadioButton radioButton2;
         private RadioButton radioButton1;
         private RichTextBox tBoxGcode;
+        private Button btUpdateTransitions;
     }
 }

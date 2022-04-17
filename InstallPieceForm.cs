@@ -29,36 +29,33 @@ namespace G_Code_Postprocessor
             TransitionTypeForm1.Show();
             this.Hide();
         }
-        public bool collectData()
-        {
-            //Проверка правильность введёных данных
-            bool valid = float.TryParse(tBoxDiameter.Text.ToString(), out circlePiece.d)
-                && float.TryParse(tBoxLength.Text.ToString(), out circlePiece.l)
-                && float.TryParse(textBox1.Text.ToString(), out circlePiece.z);
-            if (!valid) return false;
-            //Перенос данных в модель, если они правильные
-            circlePiece.d = (float)Convert.ToDouble(tBoxDiameter.Text);
-            circlePiece.l = (float)Convert.ToDouble(tBoxLength.Text);
-            circlePiece.z = (float)Convert.ToDouble(textBox1.Text);
-            return true;
-        }
+        
         private void btApply_Click(object sender, EventArgs e)
         {
-            bool valid = collectData(); //Сбор данных с формы
+            float v;
+            //Проверка правильность введёных данных
+            bool valid = float.TryParse(tBoxDiameter.Text.ToString(), out v)
+                && float.TryParse(tBoxLength.Text.ToString(), out v);
             if (!valid) return; //выйти из процедуры, если данные введены не корректно
 
-            if (!editTransition)
+            //Перенос данных в модель, если они правильные
+            transitions.Add(new Transition());
+
+            int index = transitions.Count() - 1;
+            transitions[index].Init(TransitionType.Install);
+            transitions[index].install.D = (float)Convert.ToDouble(tBoxDiameter.Text);
+            transitions[index].install.L = (float)Convert.ToDouble(tBoxLength.Text);
+            transitions[index].description = String.Format("Установить заготовку D={0:f3}, L={1:f3}",
+                transitions[index].install.D, transitions[index].install.L);
+            
+            this.Hide();
+
+            /*if (!editTransition)
             {
                 lBoxTransitions.Items.Add("");
                 lBoxTransitions.SelectedIndex = lBoxTransitions.Items.Count - 1;
-            }
-
-            int index = lBoxTransitions.SelectedIndex;
-            transitions[index].InitInstall(circlePiece);
-            transitions[index].text = "Установить заготовку D=" + circlePiece.d + ", L=" + circlePiece.l;
-
-            lBoxTransitions.Items[index] = transitions[index].text;
-            this.Hide();
+            }*/
+            //lBoxTransitions.Items[index] = transitions[index].text;
         }
     }
 }

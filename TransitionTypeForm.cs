@@ -30,5 +30,27 @@ namespace G_Code_Postprocessor
             InstallPieceForm1.Show();
             this.Hide();
         }
+
+        private void btShoulderTurning_Click(object sender, EventArgs e)
+        {
+            ShoulderTurningForm1 = new ShoulderTurningForm();
+            ShoulderTurningForm1.StartPosition = FormStartPosition.Manual;
+            ShoulderTurningForm1.Left = this.Left;
+            ShoulderTurningForm1.Top = this.Top;
+            ShoulderTurningForm1.lBoxTransitions = this.lBoxTransitions;
+            ShoulderTurningForm1.Show();
+            this.Hide();
+        }
+
+        private void btUninstall_Click(object sender, EventArgs e)
+        {
+            UninstallPieceForm1 = new UninstallPieceForm();
+            UninstallPieceForm1.StartPosition = FormStartPosition.Manual;
+            UninstallPieceForm1.Left = this.Left;
+            UninstallPieceForm1.Top = this.Top;
+            UninstallPieceForm1.lBoxTransitions = this.lBoxTransitions;
+            UninstallPieceForm1.Show();
+            this.Hide();
+        }
     }
 }

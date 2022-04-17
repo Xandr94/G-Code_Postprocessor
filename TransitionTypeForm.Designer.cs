@@ -31,16 +31,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btInstallPiece = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btShoulderTurning = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btUninstall = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btUninstall);
             this.groupBox1.Controls.Add(this.btInstallPiece);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -61,7 +63,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btShoulderTurning);
             this.groupBox2.Location = new System.Drawing.Point(218, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
@@ -69,14 +71,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Цилиндр";
             // 
-            // button2
+            // btShoulderTurning
             // 
-            this.button2.Location = new System.Drawing.Point(6, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 30);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Точить цилиндр";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btShoulderTurning.Location = new System.Drawing.Point(6, 22);
+            this.btShoulderTurning.Name = "btShoulderTurning";
+            this.btShoulderTurning.Size = new System.Drawing.Size(188, 30);
+            this.btShoulderTurning.TabIndex = 1;
+            this.btShoulderTurning.Text = "Точить цилиндр";
+            this.btShoulderTurning.UseVisualStyleBackColor = true;
+            this.btShoulderTurning.Click += new System.EventHandler(this.btShoulderTurning_Click);
             // 
             // groupBox3
             // 
@@ -105,6 +108,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Резьба";
             // 
+            // btUninstall
+            // 
+            this.btUninstall.Location = new System.Drawing.Point(6, 58);
+            this.btUninstall.Name = "btUninstall";
+            this.btUninstall.Size = new System.Drawing.Size(188, 30);
+            this.btUninstall.TabIndex = 1;
+            this.btUninstall.Text = "Снять заготовку";
+            this.btUninstall.UseVisualStyleBackColor = true;
+            this.btUninstall.Click += new System.EventHandler(this.btUninstall_Click);
+            // 
             // TransitionTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -132,9 +145,10 @@
         private GroupBox groupBox1;
         private Button btInstallPiece;
         private GroupBox groupBox2;
-        private Button button2;
+        private Button btShoulderTurning;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
         private GroupBox groupBox5;
+        private Button btUninstall;
     }
 }

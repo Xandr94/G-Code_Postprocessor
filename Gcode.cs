@@ -16,6 +16,7 @@ namespace G_Code_Postprocessor
         /// </summary>
         public List<string> frames = new List<string>();
 
+        public int framesOffset = 0;
 
         public void Init()
         {
@@ -28,7 +29,7 @@ namespace G_Code_Postprocessor
         /// <param name="words">Слова кадра - G, M или другие коды</param>
         public void AddFrame(string words)
         {
-            frames.Add("N" + (frames.Count+1) + words + "\n");
+            frames.Add("N" + (framesOffset + frames.Count + 1) + words + "\n");
         }
 
         /// <summary>
@@ -49,27 +50,27 @@ namespace G_Code_Postprocessor
         /// Установить инструмент
         /// </summary>
         /// <param name="T">Номер инструмента</param>
-        /// <param name="D">Функция инструмента</param>
+        /// <param name="D">Номер величины вылета инструмента</param>
         public string SetTheTool(int T, int D)
         {
-            return " T" + T + " D" + D;
+            return String.Format("M06 T{0} D{1}", T, D);
         }
 
         /// <summary>
         /// Ускоренное перемещение – перемещение на высокой скорости в указанную координату
         /// </summary>
-        public string FastMove(float X, float Y, float Z)
+        public string FastMove(float X, float Z)
         {
-            return " G00 X" + X + " Y" + Y + " Z" + Z;
+            return String.Format(" G00 X{0:f3} Z{1:f3}", X, Z);
         }
 
         /// <summary>
         /// Линейная рабочее перемещение – перемещение по прямой в указанную координату на рабочей подаче
         /// </summary>
         /// <param name="F">Скорость подачи</param>
-        public string Move(float X, float Y, float Z, float F)
+        public string Move(float X, float Z, float F)
         {
-            return " G01 X" + X + " Y" + Y + " Z" + Z + " F" + F;
+            return String.Format(" G01 X{0:f3} Z{1:f3} F{2:f3}", X, Z, F);
         }
 
         /// <summary>
