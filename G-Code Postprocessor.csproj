@@ -13,10 +13,10 @@
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Приложение для создания G-кода из последовательности технологических переходов.</Description>
     <FileVersion>0.1</FileVersion>
-    <AssemblyVersion>0.1</AssemblyVersion>
+    <AssemblyVersion>0.1.1</AssemblyVersion>
     <NeutralLanguage>ru-RU</NeutralLanguage>
-    <AssemblyName>$(MSBuildProjectName) v0.1</AssemblyName>
-    <Version>0.1.0</Version>
+    <AssemblyName>$(MSBuildProjectName) v0.1.1</AssemblyName>
+    <Version>0.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
