@@ -22,7 +22,7 @@ namespace G_Code_Postprocessor
         private void btApply_Click(object sender, EventArgs e)
         {
             float v; int i;
-            //Проверка правильность введёных данных
+            //Проверка правильности введёных данных
             bool valid = float.TryParse(tBoxD.Text.ToString(), out v)
                 && float.TryParse(tBoxL.Text.ToString(), out v)
                 && float.TryParse(tBoxDpiece.Text.ToString(), out v)
@@ -31,6 +31,9 @@ namespace G_Code_Postprocessor
                 && float.TryParse(tBoxU.Text.ToString(), out v)
                 && float.TryParse(tBoxF.Text.ToString(), out v)
                 && float.TryParse(tBoxS.Text.ToString(), out v)
+                && float.TryParse(tBoxB.Text.ToString(), out v)
+                && float.TryParse(tBoxX.Text.ToString(), out v)
+                && float.TryParse(tBoxZ.Text.ToString(), out v)
                 && int.TryParse(tBoxToolNumber.Text.ToString(), out i)
                 && int.TryParse(tBoxToolDepartureNumber.Text.ToString(), out i);
             if (!valid) return; //выйти из процедуры, если данные введены не корректно
@@ -47,6 +50,10 @@ namespace G_Code_Postprocessor
             transitions[index].shoulderTurning.U = (float)Convert.ToDouble(tBoxU.Text);
             transitions[index].shoulderTurning.F = (float)Convert.ToDouble(tBoxF.Text);
             transitions[index].shoulderTurning.S = (float)Convert.ToDouble(tBoxS.Text);
+            transitions[index].shoulderTurning.B = (float)Convert.ToDouble(tBoxB.Text);
+            transitions[index].shoulderTurning.X = (float)Convert.ToDouble(tBoxX.Text);
+            transitions[index].shoulderTurning.Z = (float)Convert.ToDouble(tBoxZ.Text);
+            transitions[index].shoulderTurning.MachinePause = checkBoxPause.Checked;
             transitions[index].shoulderTurning.ToolNumber = (int)Convert.ToDouble(tBoxToolNumber.Text);
             transitions[index].shoulderTurning.ToolDepartureNumber = (int)Convert.ToDouble(tBoxToolDepartureNumber.Text);
             transitions[index].description = String.Format("Точить цилиндр, выдерживая D={0:f3} на L={1:f3} предварительно",

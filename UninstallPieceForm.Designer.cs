@@ -285,6 +285,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.btApply);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "UninstallPieceForm";
             this.Text = "Параметры снятия заготовки";
             this.groupBox1.ResumeLayout(false);

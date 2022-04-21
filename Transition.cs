@@ -47,6 +47,8 @@ namespace G_Code_Postprocessor
         public float D;
         /// <summary> Длина проточки </summary>
         public float L;
+        /// <summary> Отступ от торца </summary>
+        public float B;
         /// <summary> Диаметр заготовки </summary>
         public float Dpiece;
         /// <summary> Глубина резания </summary>
@@ -63,6 +65,12 @@ namespace G_Code_Postprocessor
         public int ToolNumber;
         /// <summary> Номер вылета инструмента </summary>
         public int ToolDepartureNumber;
+        /// <summary> Остановить станок для смены инстумента </summary>
+        public bool MachinePause;
+        /// <summary> Высота инструмента над зоготовкой </summary>
+        public float X;
+        /// <summary> Величина подвода к заготовке </summary>
+        public float Z;
     }
 
     /// <summary> Класс технологического перехода </summary>
@@ -146,34 +154,38 @@ namespace G_Code_Postprocessor
                         float h = shoulderTurning.h;
                         float R = shoulderTurning.R;
                         float S = shoulderTurning.S;
+                        float X = shoulderTurning.X;
+                        float Z = shoulderTurning.Z;
+                        float B = shoulderTurning.B;
                         int ToolNumber = shoulderTurning.ToolNumber;
                         int ToolDepartureNumber = shoulderTurning.ToolDepartureNumber;
+                        bool MachinePause = shoulderTurning.MachinePause;
 
                         //Dpiece = D + 2*U + 2*ost + 2*n*h
                         int n = (int)((Dpiece - D - 2*U) / (2*h));
                         float ost = (Dpiece - D - 2 * U) - (2 * n * h);
-                        float p = 0.5f; //Величина подхода
 
-                        gcode.AddFrame(gcode.SetTheTool(ToolNumber, ToolDepartureNumber));
+                        gcode.AddFrame((MachinePause ? gcode.StopWithContinuationIfNecessary() : "")
+                            + gcode.SetTheTool(ToolNumber, ToolDepartureNumber) );
                         gcode.AddFrame(gcode.SetTheRotationClockwise(S) + "\n");
 
                         for (int i = 1; i <= n; i++)
                         {
-                            gcode.AddFrame(gcode.FastMove(Dpiece - 2 * h * i, p));
+                            gcode.AddFrame(gcode.FastMove(Dpiece - 2 * h * i, Z - B));
                             gcode.AddFrame(gcode.SetRelativeCoords());
-                            gcode.AddFrame(gcode.Move(0, -(L + p), F));
+                            gcode.AddFrame(gcode.Move(0, -(L + Z), F));
                             gcode.AddFrame(gcode.FastMove(R, 0));
                             gcode.AddFrame(gcode.SetAbsoluteCoords());
-                            gcode.AddFrame(gcode.FastMove(Dpiece - 2 * h * i + p, p) + "\n" + ((ost > 0.00001) ? "" : "\n"));
+                            gcode.AddFrame(gcode.FastMove(Dpiece - 2 * h * i + X, Z - B) + "\n" + ((ost > 0.00001) ? "" : "\n"));
                         }
                         if (ost > 0.00001)
                         {
-                            gcode.AddFrame(gcode.FastMove(D + 2 * U, p));
+                            gcode.AddFrame(gcode.FastMove(D + 2 * U, Z - B));
                             gcode.AddFrame(gcode.SetRelativeCoords());
-                            gcode.AddFrame(gcode.Move(0, -(L + p), F));
+                            gcode.AddFrame(gcode.Move(0, -(L + Z), F));
                             gcode.AddFrame(gcode.FastMove(R, 0));
                             gcode.AddFrame(gcode.SetAbsoluteCoords());
-                            gcode.AddFrame(gcode.FastMove(D + 2 * U + p, p) + "\n\n");
+                            gcode.AddFrame(gcode.FastMove(D + 2 * U + X, Z - B) + "\n\n");
                         }
                         /*
                         for (int i = 0; i < n; i++)

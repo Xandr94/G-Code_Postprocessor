@@ -53,7 +53,7 @@ namespace G_Code_Postprocessor
         /// <param name="D">Номер величины вылета инструмента</param>
         public string SetTheTool(int T, int D)
         {
-            return String.Format("M06 T{0} D{1}", T, D);
+            return String.Format(" T{0} D{1}", T, D);
         }
 
         /// <summary>
@@ -102,6 +102,24 @@ namespace G_Code_Postprocessor
         public string SetCoordSystem(Offset offset)
         {
             return " G" + (int)offset;
+        }
+
+        /// <summary>
+        /// Остановка выполнения управляющей программы с
+        /// последующим ее продолжением
+        /// </summary>
+        public string StopWithContinuation()
+        {
+            return " M00";
+        }
+
+        /// <summary>
+        /// Остановка выполнения управляющей программы с
+        /// последующим ее продолжением по необходимости
+        /// </summary>
+        public string StopWithContinuationIfNecessary()
+        {
+            return " M01";
         }
 
         /// <summary>

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btUninstall = new System.Windows.Forms.Button();
             this.btInstallPiece = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btShoulderTurning = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btUninstall = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +50,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подготовительные работы";
+            // 
+            // btUninstall
+            // 
+            this.btUninstall.Location = new System.Drawing.Point(6, 58);
+            this.btUninstall.Name = "btUninstall";
+            this.btUninstall.Size = new System.Drawing.Size(188, 30);
+            this.btUninstall.TabIndex = 1;
+            this.btUninstall.Text = "Снять заготовку";
+            this.btUninstall.UseVisualStyleBackColor = true;
+            this.btUninstall.Click += new System.EventHandler(this.btUninstall_Click);
             // 
             // btInstallPiece
             // 
@@ -108,16 +118,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Резьба";
             // 
-            // btUninstall
-            // 
-            this.btUninstall.Location = new System.Drawing.Point(6, 58);
-            this.btUninstall.Name = "btUninstall";
-            this.btUninstall.Size = new System.Drawing.Size(188, 30);
-            this.btUninstall.TabIndex = 1;
-            this.btUninstall.Text = "Снять заготовку";
-            this.btUninstall.UseVisualStyleBackColor = true;
-            this.btUninstall.Click += new System.EventHandler(this.btUninstall_Click);
-            // 
             // TransitionTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -130,7 +130,6 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "TransitionTypeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Выберите переход";
