@@ -36,8 +36,10 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btFacing = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -93,6 +95,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btFacing);
             this.groupBox3.Location = new System.Drawing.Point(424, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 100);
@@ -118,6 +121,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Резьба";
             // 
+            // btFacing
+            // 
+            this.btFacing.Location = new System.Drawing.Point(6, 22);
+            this.btFacing.Name = "btFacing";
+            this.btFacing.Size = new System.Drawing.Size(188, 30);
+            this.btFacing.TabIndex = 2;
+            this.btFacing.Text = "Подрезать торец";
+            this.btFacing.UseVisualStyleBackColor = true;
+            this.btFacing.Click += new System.EventHandler(this.btFacing_Click);
+            // 
             // TransitionTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -135,6 +148,7 @@
             this.Text = "Выберите переход";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -149,5 +163,6 @@
         private GroupBox groupBox4;
         private GroupBox groupBox5;
         private Button btUninstall;
+        private Button btFacing;
     }
 }
