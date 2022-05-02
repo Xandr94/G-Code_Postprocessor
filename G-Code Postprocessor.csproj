@@ -12,12 +12,18 @@
     <Authors>Кудрявцев А.В.</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Приложение для создания G-кода из последовательности технологических переходов.</Description>
-    <FileVersion>0.1</FileVersion>
-    <AssemblyVersion>0.1.1</AssemblyVersion>
+    <FileVersion>0.2.0</FileVersion>
+    <AssemblyVersion>0.2.0</AssemblyVersion>
     <NeutralLanguage>ru-RU</NeutralLanguage>
-    <AssemblyName>$(MSBuildProjectName) v0.1.1</AssemblyName>
-    <Version>0.1.1</Version>
+    <AssemblyName>Жикодер 0.2.0</AssemblyName>
+    <Version>0.2.0</Version>
+    <ApplicationIcon>g-coder2.ico</ApplicationIcon>
+    <PackageIcon>g-coder2.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="g-coder2.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -36,6 +42,21 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="g-coder2.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="жикодер0.2.0.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="жикодер2.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

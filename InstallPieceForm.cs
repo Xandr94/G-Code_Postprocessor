@@ -11,9 +11,8 @@ using static G_Code_Postprocessor.MainForm;
 
 namespace G_Code_Postprocessor
 {
-    public partial class InstallPieceForm : Form
+    public partial class InstallPieceForm : TransForm
     {
-        public ListBox lBoxTransitions;
 
         public InstallPieceForm()
         {
@@ -22,11 +21,14 @@ namespace G_Code_Postprocessor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TransitionTypeForm1 = new TransitionTypeForm();
-            TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
-            TransitionTypeForm1.Left = this.Left;
-            TransitionTypeForm1.Top = this.Top;
-            TransitionTypeForm1.Show();
+            if (!editTransition)
+            {
+                TransitionTypeForm1 = new TransitionTypeForm();
+                TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
+                TransitionTypeForm1.Left = this.Left;
+                TransitionTypeForm1.Top = this.Top;
+                TransitionTypeForm1.Show();
+            }
             this.Hide();
         }
         
@@ -39,23 +41,32 @@ namespace G_Code_Postprocessor
             if (!valid) return; //выйти из процедуры, если данные введены не корректно
 
             //Перенос данных в модель, если они правильные
-            transitions.Add(new Transition());
-
-            int index = transitions.Count() - 1;
-            transitions[index].Init(TransitionType.Install);
+            int index = lBoxTransitions.SelectedIndex;
+            if (!editTransition)
+            {
+                transitions.Add(new Transition());
+                index = transitions.Count() - 1;
+                transitions[index].Init(TransitionType.Install);
+            }
+            if (index < 0) return;
+            
             transitions[index].install.D = (float)Convert.ToDouble(tBoxDiameter.Text);
             transitions[index].install.L = (float)Convert.ToDouble(tBoxLength.Text);
             transitions[index].description = String.Format("Установить заготовку D={0:f3}, L={1:f3}",
                 transitions[index].install.D, transitions[index].install.L);
             
             this.Hide();
+        }
 
-            /*if (!editTransition)
+        private void InstallPieceForm_Load(object sender, EventArgs e)
+        {
+            int index = lBoxTransitions.SelectedIndex;
+            if (editTransition && index > -1)
             {
-                lBoxTransitions.Items.Add("");
-                lBoxTransitions.SelectedIndex = lBoxTransitions.Items.Count - 1;
-            }*/
-            //lBoxTransitions.Items[index] = transitions[index].text;
+                button2.Text = "Отмена";
+                tBoxDiameter.Text = transitions[index].install.D.ToString();
+                tBoxLength.Text = transitions[index].install.L.ToString();
+            }
         }
     }
 }

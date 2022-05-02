@@ -207,7 +207,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(121, 30);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Высота инструмента\r\nнад зоготовкой (X)";
+            this.label11.Text = "Высота инструмента\r\nнад заготовкой (X)";
             // 
             // label10
             // 
@@ -292,7 +292,7 @@
             this.tBoxh.Name = "tBoxh";
             this.tBoxh.Size = new System.Drawing.Size(60, 23);
             this.tBoxh.TabIndex = 1;
-            this.tBoxh.Text = "0.5";
+            this.tBoxh.Text = "0.3";
             // 
             // groupBox3
             // 
@@ -311,8 +311,6 @@
             // checkBoxPause
             // 
             this.checkBoxPause.AutoSize = true;
-            this.checkBoxPause.Checked = true;
-            this.checkBoxPause.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPause.Location = new System.Drawing.Point(36, 80);
             this.checkBoxPause.Name = "checkBoxPause";
             this.checkBoxPause.Size = new System.Drawing.Size(152, 34);
@@ -400,6 +398,7 @@
             this.Name = "ShoulderTurningForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Параметры обработки цилиндра";
+            this.Load += new System.EventHandler(this.ShoulderTurningForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

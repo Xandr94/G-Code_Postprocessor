@@ -28,24 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.gBoxGcode = new System.Windows.Forms.GroupBox();
             this.tBoxGcode = new System.Windows.Forms.RichTextBox();
             this.btGenerateGcode = new System.Windows.Forms.Button();
             this.btSaveGcode = new System.Windows.Forms.Button();
+            this.btOk = new System.Windows.Forms.Button();
             this.gBoxTransitions = new System.Windows.Forms.GroupBox();
+            this.lBoxTransitions = new System.Windows.Forms.ListBox();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.btClear = new System.Windows.Forms.Button();
             this.btUpdateTransitions = new System.Windows.Forms.Button();
             this.btAddTransition = new System.Windows.Forms.Button();
             this.btRemoveTransition = new System.Windows.Forms.Button();
-            this.lBoxTransitions = new System.Windows.Forms.ListBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gBoxOperationType = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.pbSafetyScreen = new System.Windows.Forms.PictureBox();
             this.gBoxGcode.SuspendLayout();
             this.gBoxTransitions.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.gBoxOperationType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSafetyScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // gBoxGcode
@@ -53,9 +52,9 @@
             this.gBoxGcode.Controls.Add(this.tBoxGcode);
             this.gBoxGcode.Controls.Add(this.btGenerateGcode);
             this.gBoxGcode.Controls.Add(this.btSaveGcode);
-            this.gBoxGcode.Location = new System.Drawing.Point(588, 12);
+            this.gBoxGcode.Location = new System.Drawing.Point(568, 12);
             this.gBoxGcode.Name = "gBoxGcode";
-            this.gBoxGcode.Size = new System.Drawing.Size(200, 426);
+            this.gBoxGcode.Size = new System.Drawing.Size(220, 426);
             this.gBoxGcode.TabIndex = 0;
             this.gBoxGcode.TabStop = false;
             this.gBoxGcode.Text = "G-Code";
@@ -64,7 +63,8 @@
             // 
             this.tBoxGcode.Location = new System.Drawing.Point(6, 22);
             this.tBoxGcode.Name = "tBoxGcode";
-            this.tBoxGcode.Size = new System.Drawing.Size(188, 364);
+            this.tBoxGcode.ReadOnly = true;
+            this.tBoxGcode.Size = new System.Drawing.Size(208, 364);
             this.tBoxGcode.TabIndex = 7;
             this.tBoxGcode.Text = "";
             this.tBoxGcode.WordWrap = false;
@@ -73,15 +73,15 @@
             // 
             this.btGenerateGcode.Location = new System.Drawing.Point(6, 397);
             this.btGenerateGcode.Name = "btGenerateGcode";
-            this.btGenerateGcode.Size = new System.Drawing.Size(75, 23);
+            this.btGenerateGcode.Size = new System.Drawing.Size(107, 23);
             this.btGenerateGcode.TabIndex = 3;
-            this.btGenerateGcode.Text = "Обновить";
+            this.btGenerateGcode.Text = "Копировать всё";
             this.btGenerateGcode.UseVisualStyleBackColor = true;
             this.btGenerateGcode.Click += new System.EventHandler(this.btGenerateGcode_Click);
             // 
             // btSaveGcode
             // 
-            this.btSaveGcode.Location = new System.Drawing.Point(119, 397);
+            this.btSaveGcode.Location = new System.Drawing.Point(139, 397);
             this.btSaveGcode.Name = "btSaveGcode";
             this.btSaveGcode.Size = new System.Drawing.Size(75, 23);
             this.btSaveGcode.TabIndex = 4;
@@ -89,24 +89,70 @@
             this.btSaveGcode.UseVisualStyleBackColor = true;
             this.btSaveGcode.Click += new System.EventHandler(this.btSaveGcode_Click);
             // 
+            // btOk
+            // 
+            this.btOk.Location = new System.Drawing.Point(628, 409);
+            this.btOk.Name = "btOk";
+            this.btOk.Size = new System.Drawing.Size(160, 35);
+            this.btOk.TabIndex = 10;
+            this.btOk.Text = "Всё в порядке";
+            this.btOk.UseVisualStyleBackColor = true;
+            this.btOk.Click += new System.EventHandler(this.btOk_Click);
+            // 
             // gBoxTransitions
             // 
+            this.gBoxTransitions.Controls.Add(this.lBoxTransitions);
+            this.gBoxTransitions.Controls.Add(this.btEdit);
+            this.gBoxTransitions.Controls.Add(this.btClear);
             this.gBoxTransitions.Controls.Add(this.btUpdateTransitions);
             this.gBoxTransitions.Controls.Add(this.btAddTransition);
             this.gBoxTransitions.Controls.Add(this.btRemoveTransition);
-            this.gBoxTransitions.Controls.Add(this.lBoxTransitions);
-            this.gBoxTransitions.Location = new System.Drawing.Point(218, 12);
+            this.gBoxTransitions.Location = new System.Drawing.Point(12, 12);
             this.gBoxTransitions.Name = "gBoxTransitions";
-            this.gBoxTransitions.Size = new System.Drawing.Size(364, 426);
+            this.gBoxTransitions.Size = new System.Drawing.Size(550, 426);
             this.gBoxTransitions.TabIndex = 1;
             this.gBoxTransitions.TabStop = false;
             this.gBoxTransitions.Text = "Переходы операции";
             // 
+            // lBoxTransitions
+            // 
+            this.lBoxTransitions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.lBoxTransitions.FormattingEnabled = true;
+            this.lBoxTransitions.ItemHeight = 15;
+            this.lBoxTransitions.Location = new System.Drawing.Point(6, 22);
+            this.lBoxTransitions.Name = "lBoxTransitions";
+            this.lBoxTransitions.Size = new System.Drawing.Size(538, 364);
+            this.lBoxTransitions.TabIndex = 9;
+            this.lBoxTransitions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lst_DrawItem);
+            this.lBoxTransitions.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.lst_MeasureItem);
+            this.lBoxTransitions.SelectedIndexChanged += new System.EventHandler(this.lBoxTransitions_SelectedIndexChanged);
+            this.lBoxTransitions.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBoxTransitions_MouseDoubleClick);
+            // 
+            // btEdit
+            // 
+            this.btEdit.Location = new System.Drawing.Point(273, 397);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(99, 23);
+            this.btEdit.TabIndex = 8;
+            this.btEdit.Text = "Редактировать";
+            this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
+            // 
+            // btClear
+            // 
+            this.btClear.Location = new System.Drawing.Point(92, 397);
+            this.btClear.Name = "btClear";
+            this.btClear.Size = new System.Drawing.Size(80, 23);
+            this.btClear.TabIndex = 7;
+            this.btClear.Text = "Очистить";
+            this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
+            // 
             // btUpdateTransitions
             // 
-            this.btUpdateTransitions.Location = new System.Drawing.Point(283, 397);
+            this.btUpdateTransitions.Location = new System.Drawing.Point(464, 397);
             this.btUpdateTransitions.Name = "btUpdateTransitions";
-            this.btUpdateTransitions.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateTransitions.Size = new System.Drawing.Size(80, 23);
             this.btUpdateTransitions.TabIndex = 2;
             this.btUpdateTransitions.Text = "Обновить";
             this.btUpdateTransitions.UseVisualStyleBackColor = true;
@@ -114,9 +160,9 @@
             // 
             // btAddTransition
             // 
-            this.btAddTransition.Location = new System.Drawing.Point(202, 397);
+            this.btAddTransition.Location = new System.Drawing.Point(378, 397);
             this.btAddTransition.Name = "btAddTransition";
-            this.btAddTransition.Size = new System.Drawing.Size(75, 23);
+            this.btAddTransition.Size = new System.Drawing.Size(80, 23);
             this.btAddTransition.TabIndex = 0;
             this.btAddTransition.Text = "Добавить";
             this.btAddTransition.UseVisualStyleBackColor = true;
@@ -127,125 +173,67 @@
             this.btRemoveTransition.Enabled = false;
             this.btRemoveTransition.Location = new System.Drawing.Point(6, 397);
             this.btRemoveTransition.Name = "btRemoveTransition";
-            this.btRemoveTransition.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveTransition.Size = new System.Drawing.Size(80, 23);
             this.btRemoveTransition.TabIndex = 5;
             this.btRemoveTransition.Text = "Удалить";
             this.btRemoveTransition.UseVisualStyleBackColor = true;
             this.btRemoveTransition.Click += new System.EventHandler(this.btRemoveTransition_Click);
             // 
-            // lBoxTransitions
+            // pbSafetyScreen
             // 
-            this.lBoxTransitions.FormattingEnabled = true;
-            this.lBoxTransitions.HorizontalScrollbar = true;
-            this.lBoxTransitions.ItemHeight = 15;
-            this.lBoxTransitions.Location = new System.Drawing.Point(6, 22);
-            this.lBoxTransitions.Name = "lBoxTransitions";
-            this.lBoxTransitions.Size = new System.Drawing.Size(352, 364);
-            this.lBoxTransitions.TabIndex = 6;
-            this.lBoxTransitions.SelectedIndexChanged += new System.EventHandler(this.lBoxTransitions_SelectedIndexChanged);
-
-            //Для переноса слов
-            this.lBoxTransitions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.lBoxTransitions.MeasureItem += lst_MeasureItem;
-            this.lBoxTransitions.DrawItem += lst_DrawItem;
-
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.gBoxOperationType);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 426);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Параметры операции";
-            // 
-            // gBoxOperationType
-            // 
-            this.gBoxOperationType.Controls.Add(this.radioButton3);
-            this.gBoxOperationType.Controls.Add(this.radioButton2);
-            this.gBoxOperationType.Controls.Add(this.radioButton1);
-            this.gBoxOperationType.Location = new System.Drawing.Point(6, 22);
-            this.gBoxOperationType.Name = "gBoxOperationType";
-            this.gBoxOperationType.Size = new System.Drawing.Size(188, 100);
-            this.gBoxOperationType.TabIndex = 0;
-            this.gBoxOperationType.TabStop = false;
-            this.gBoxOperationType.Text = "Тип операции";
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Enabled = false;
-            this.radioButton3.Location = new System.Drawing.Point(6, 72);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(99, 19);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Фрезерная 5х";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.Location = new System.Drawing.Point(6, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(99, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Фрезерная 3x";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(91, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Токарная 3x";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.pbSafetyScreen.Image = global::G_Code_Postprocessor.Properties.Resources.Экран_безопасности;
+            this.pbSafetyScreen.Location = new System.Drawing.Point(487, 0);
+            this.pbSafetyScreen.Name = "pbSafetyScreen";
+            this.pbSafetyScreen.Size = new System.Drawing.Size(247, 172);
+            this.pbSafetyScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbSafetyScreen.TabIndex = 2;
+            this.pbSafetyScreen.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btOk);
+            this.Controls.Add(this.pbSafetyScreen);
             this.Controls.Add(this.gBoxTransitions);
             this.Controls.Add(this.gBoxGcode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "G-Code Постпроцессор";
+            this.Text = "Жикодер 0.2.0";
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.gBoxGcode.ResumeLayout(false);
             this.gBoxTransitions.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.gBoxOperationType.ResumeLayout(false);
-            this.gBoxOperationType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSafetyScreen)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        /*
+            // Для переноса по словам добавить в блок листбокса в регионе сверху
+            this.lBoxTransitions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.lBoxTransitions.MeasureItem += lst_MeasureItem;
+            this.lBoxTransitions.DrawItem += lst_DrawItem;
+        */
+
         private GroupBox gBoxGcode;
         private Button btGenerateGcode;
         private Button btSaveGcode;
         private GroupBox gBoxTransitions;
-        private ListBox lBoxTransitions;
-        private GroupBox groupBox1;
         private Button btAddTransition;
         private Button btRemoveTransition;
-        private GroupBox gBoxOperationType;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
         private RichTextBox tBoxGcode;
         private Button btUpdateTransitions;
+        private Button btClear;
+        private Button btEdit;
+        private ListBox lBoxTransitions;
+        private PictureBox pbSafetyScreen;
+        private Button btOk;
     }
 }

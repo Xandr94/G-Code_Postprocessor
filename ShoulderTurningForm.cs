@@ -11,9 +11,8 @@ using static G_Code_Postprocessor.MainForm;
 
 namespace G_Code_Postprocessor
 {
-    public partial class ShoulderTurningForm : Form
+    public partial class ShoulderTurningForm : TransForm
     {
-        public ListBox lBoxTransitions;
         public ShoulderTurningForm()
         {
             InitializeComponent();
@@ -39,9 +38,14 @@ namespace G_Code_Postprocessor
             if (!valid) return; //выйти из процедуры, если данные введены не корректно
 
             //Перенос данных в модель, если они правильные
-            transitions.Add(new Transition());
-            int index = transitions.Count() - 1;
-            transitions[index].Init(TransitionType.ShoulderTurning);
+            int index = lBoxTransitions.SelectedIndex;
+            if (!editTransition)
+            {
+                transitions.Add(new Transition());
+                index = transitions.Count() - 1;
+                transitions[index].Init(TransitionType.ShoulderTurning);
+            }
+            if (index < 0) return;
             transitions[index].shoulderTurning.D = (float)Convert.ToDouble(tBoxD.Text);
             transitions[index].shoulderTurning.L = (float)Convert.ToDouble(tBoxL.Text);
             transitions[index].shoulderTurning.Dpiece = (float)Convert.ToDouble(tBoxDpiece.Text);
@@ -65,12 +69,38 @@ namespace G_Code_Postprocessor
 
         private void btBack_Click(object sender, EventArgs e)
         {
-            TransitionTypeForm1 = new TransitionTypeForm();
-            TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
-            TransitionTypeForm1.Left = this.Left;
-            TransitionTypeForm1.Top = this.Top;
-            TransitionTypeForm1.Show();
+            if (!editTransition)
+            {
+                TransitionTypeForm1 = new TransitionTypeForm();
+                TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
+                TransitionTypeForm1.Left = this.Left;
+                TransitionTypeForm1.Top = this.Top;
+                TransitionTypeForm1.Show();
+            }
             this.Hide();
+        }
+
+        private void ShoulderTurningForm_Load(object sender, EventArgs e)
+        {
+            int index = lBoxTransitions.SelectedIndex;
+            if (editTransition && index > -1)
+            {
+                btBack.Text = "Отмена";
+                tBoxD.Text = transitions[index].shoulderTurning.D.ToString();
+                tBoxL.Text = transitions[index].shoulderTurning.L.ToString();
+                tBoxDpiece.Text = transitions[index].shoulderTurning.Dpiece.ToString();
+                tBoxh.Text = transitions[index].shoulderTurning.h.ToString();
+                tBoxR.Text = transitions[index].shoulderTurning.R.ToString();
+                tBoxU.Text = transitions[index].shoulderTurning.U.ToString();
+                tBoxF.Text = transitions[index].shoulderTurning.F.ToString();
+                tBoxS.Text = transitions[index].shoulderTurning.S.ToString();
+                tBoxB.Text = transitions[index].shoulderTurning.B.ToString();
+                tBoxX.Text = transitions[index].shoulderTurning.X.ToString();
+                tBoxZ.Text = transitions[index].shoulderTurning.Z.ToString();
+                checkBoxPause.Checked = transitions[index].shoulderTurning.MachinePause;
+                tBoxToolNumber.Text = transitions[index].shoulderTurning.ToolNumber.ToString();
+                tBoxToolDepartureNumber.Text = transitions[index].shoulderTurning.ToolDepartureNumber.ToString();
+            }
         }
     }
 }

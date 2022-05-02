@@ -182,7 +182,7 @@ namespace G_Code_Postprocessor
                         bool End = uninstall.End;
 
                         if (Stop) gcode.AddFrame(gcode.StopTheRotation());
-                        gcode.AddFrame(gcode.FastMove(X, Z));//ноль на торце заготовки
+                        gcode.AddFrame(gcode.FastMove(2*X, Z));//ноль на торце заготовки
                         if (End) gcode.frames.Add("M02");
                         return true;
                     }
@@ -207,7 +207,7 @@ namespace G_Code_Postprocessor
                         int n = (int)((Dpiece - D - 2*U) / (2*h));
                         float ost = (Dpiece - D - 2 * U) - (2 * n * h);
 
-                        gcode.AddFrame(MachinePause ? gcode.StopWithContinuationIfNecessary() : "");
+                        if (MachinePause) gcode.AddFrame(gcode.StopWithContinuationIfNecessary());
                         gcode.AddFrame(gcode.SetTheTool(ToolNumber, ToolDepartureNumber));
                         gcode.AddFrame(gcode.SetTheRotationClockwise(S) + "\n");
 
@@ -257,7 +257,7 @@ namespace G_Code_Postprocessor
 
                         //Dpiece = D + 2*U
 
-                        gcode.AddFrame(MachinePause ? gcode.StopWithContinuationIfNecessary() : "");
+                        if(MachinePause) gcode.AddFrame(gcode.StopWithContinuationIfNecessary());
                         gcode.AddFrame(gcode.SetTheTool(ToolNumber, ToolDepartureNumber));
                         gcode.AddFrame(gcode.SetTheRotationClockwise(S) + "\n");
 
@@ -265,7 +265,7 @@ namespace G_Code_Postprocessor
                         {
                             gcode.AddFrame(gcode.FastMove(Dpiece + 2 * X, -B - i * h));
                             gcode.AddFrame(gcode.SetRelativeCoords());
-                            gcode.AddFrame(gcode.Move(Dpiece - D - 2 * U, 0, F));
+                            gcode.AddFrame(gcode.Move(-(Dpiece + 2 * X - D - 2 * U), 0, F));
                             gcode.AddFrame(gcode.Move(0, R, F));
                             gcode.AddFrame(gcode.SetAbsoluteCoords());
                             gcode.AddFrame(gcode.FastMove(Dpiece + 2 * X, -B - i * h + Z) + "\n"
@@ -275,7 +275,7 @@ namespace G_Code_Postprocessor
                         {
                             gcode.AddFrame(gcode.FastMove(Dpiece + 2 * X, -B - n * h - ost));
                             gcode.AddFrame(gcode.SetRelativeCoords());
-                            gcode.AddFrame(gcode.Move(Dpiece - D - 2 * U, 0, F));
+                            gcode.AddFrame(gcode.Move(-(Dpiece + 2 * X - D - 2 * U), 0, F));
                             gcode.AddFrame(gcode.Move(0, R, F));
                             gcode.AddFrame(gcode.SetAbsoluteCoords());
                             gcode.AddFrame(gcode.FastMove(Dpiece + 2 * X, -B - n * h + Z) + "\n\n");

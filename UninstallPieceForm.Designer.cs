@@ -209,7 +209,7 @@
             this.tBoxX.Name = "tBoxX";
             this.tBoxX.Size = new System.Drawing.Size(50, 23);
             this.tBoxX.TabIndex = 9;
-            this.tBoxX.Text = "56";
+            this.tBoxX.Text = "20";
             // 
             // label3
             // 
@@ -289,6 +289,7 @@
             this.MaximizeBox = false;
             this.Name = "UninstallPieceForm";
             this.Text = "Параметры снятия заготовки";
+            this.Load += new System.EventHandler(this.UninstallPieceForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

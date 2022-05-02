@@ -11,9 +11,8 @@ using static G_Code_Postprocessor.MainForm;
 
 namespace G_Code_Postprocessor
 {
-    public partial class UninstallPieceForm : Form
+    public partial class UninstallPieceForm : TransForm
     {
-        public ListBox lBoxTransitions;
         public UninstallPieceForm()
         {
             InitializeComponent();
@@ -30,10 +29,14 @@ namespace G_Code_Postprocessor
             if (!valid) return; //выйти из процедуры, если данные введены не корректно
 
             //Перенос данных в модель, если они правильные
-            transitions.Add(new Transition());
-
-            int index = transitions.Count() - 1;
-            transitions[index].Init(TransitionType.Uninstall);
+            int index = lBoxTransitions.SelectedIndex;
+            if (!editTransition)
+            {
+                transitions.Add(new Transition());
+                index = transitions.Count() - 1;
+                transitions[index].Init(TransitionType.Uninstall);
+            }
+            if (index < 0) return;
             transitions[index].uninstall.D = (float)Convert.ToDouble(tBoxDiameter.Text);
             transitions[index].uninstall.L = (float)Convert.ToDouble(tBoxLength.Text);
             transitions[index].uninstall.X = (float)Convert.ToDouble(tBoxX.Text);
@@ -47,12 +50,30 @@ namespace G_Code_Postprocessor
 
         private void btBack_Click(object sender, EventArgs e)
         {
-            TransitionTypeForm1 = new TransitionTypeForm();
-            TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
-            TransitionTypeForm1.Left = this.Left;
-            TransitionTypeForm1.Top = this.Top;
-            TransitionTypeForm1.Show();
+            if (!editTransition)
+            {
+                TransitionTypeForm1 = new TransitionTypeForm();
+                TransitionTypeForm1.StartPosition = FormStartPosition.Manual;
+                TransitionTypeForm1.Left = this.Left;
+                TransitionTypeForm1.Top = this.Top;
+                TransitionTypeForm1.Show();
+            }
             this.Hide();
+        }
+
+        private void UninstallPieceForm_Load(object sender, EventArgs e)
+        {
+            int index = lBoxTransitions.SelectedIndex;
+            if (editTransition && index > -1)
+            {
+                btBack.Text = "Отмена";
+                tBoxDiameter.Text = transitions[index].uninstall.D.ToString();
+                tBoxLength.Text = transitions[index].uninstall.L.ToString();
+                tBoxX.Text = transitions[index].uninstall.X.ToString();
+                tBoxZ.Text = transitions[index].uninstall.Z.ToString();
+                checkBoxStop.Checked = transitions[index].uninstall.Stop;
+                checkBoxEndPopg.Checked = transitions[index].uninstall.End;
+            }
         }
     }
 }

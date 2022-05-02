@@ -79,5 +79,15 @@ namespace G_Code_Postprocessor.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Экран_безопасности {
+            get {
+                object obj = ResourceManager.GetObject("Экран безопасности", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
