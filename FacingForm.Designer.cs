@@ -73,6 +73,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::G_Code_Postprocessor.Properties.Resources.Facing;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(320, 320);
@@ -194,7 +195,7 @@
             // 
             // tBoxW
             // 
-            this.tBoxW.Location = new System.Drawing.Point(154, 120);
+            this.tBoxW.Location = new System.Drawing.Point(154, 130);
             this.tBoxW.Name = "tBoxW";
             this.tBoxW.Size = new System.Drawing.Size(60, 23);
             this.tBoxW.TabIndex = 15;
@@ -202,7 +203,7 @@
             // 
             // tBoxZ
             // 
-            this.tBoxZ.Location = new System.Drawing.Point(154, 273);
+            this.tBoxZ.Location = new System.Drawing.Point(154, 280);
             this.tBoxZ.Name = "tBoxZ";
             this.tBoxZ.Size = new System.Drawing.Size(60, 23);
             this.tBoxZ.TabIndex = 14;
@@ -219,7 +220,7 @@
             // 
             // tBoxX
             // 
-            this.tBoxX.Location = new System.Drawing.Point(154, 234);
+            this.tBoxX.Location = new System.Drawing.Point(154, 241);
             this.tBoxX.Name = "tBoxX";
             this.tBoxX.Size = new System.Drawing.Size(60, 23);
             this.tBoxX.TabIndex = 12;
@@ -245,7 +246,7 @@
             // 
             // tBoxS
             // 
-            this.tBoxS.Location = new System.Drawing.Point(154, 196);
+            this.tBoxS.Location = new System.Drawing.Point(154, 203);
             this.tBoxS.Name = "tBoxS";
             this.tBoxS.Size = new System.Drawing.Size(60, 23);
             this.tBoxS.TabIndex = 9;
@@ -297,7 +298,7 @@
             // 
             // tBoxU
             // 
-            this.tBoxU.Location = new System.Drawing.Point(154, 83);
+            this.tBoxU.Location = new System.Drawing.Point(154, 90);
             this.tBoxU.Name = "tBoxU";
             this.tBoxU.Size = new System.Drawing.Size(60, 23);
             this.tBoxU.TabIndex = 3;
@@ -357,7 +358,7 @@
             // 
             // tBoxB
             // 
-            this.tBoxB.Location = new System.Drawing.Point(154, 138);
+            this.tBoxB.Location = new System.Drawing.Point(154, 148);
             this.tBoxB.Name = "tBoxB";
             this.tBoxB.Size = new System.Drawing.Size(60, 23);
             this.tBoxB.TabIndex = 9;
@@ -368,9 +369,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 141);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 15);
+            this.label13.Size = new System.Drawing.Size(135, 30);
             this.label13.TabIndex = 8;
-            this.label13.Text = "Отступ от торца (B)";
+            this.label13.Text = "Отступ от торца \r\nисходной заготовки (B)";
             // 
             // tBoxDpiece
             // 

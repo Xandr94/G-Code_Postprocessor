@@ -42,6 +42,7 @@
             this.btAddTransition = new System.Windows.Forms.Button();
             this.btRemoveTransition = new System.Windows.Forms.Button();
             this.pbSafetyScreen = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.gBoxGcode.SuspendLayout();
             this.gBoxTransitions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSafetyScreen)).BeginInit();
@@ -189,6 +190,18 @@
             this.pbSafetyScreen.TabIndex = 2;
             this.pbSafetyScreen.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DisplayMember = "0";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Токарная"});
+            this.comboBox1.Location = new System.Drawing.Point(140, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 5;
+            this.comboBox1.ValueMember = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -196,6 +209,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btOk);
             this.Controls.Add(this.pbSafetyScreen);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.gBoxTransitions);
             this.Controls.Add(this.gBoxGcode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -235,5 +249,6 @@
         private ListBox lBoxTransitions;
         private PictureBox pbSafetyScreen;
         private Button btOk;
+        private ComboBox comboBox1;
     }
 }

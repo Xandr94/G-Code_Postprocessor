@@ -49,15 +49,17 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btApply
             // 
-            this.btApply.Location = new System.Drawing.Point(222, 319);
+            this.btApply.Location = new System.Drawing.Point(522, 319);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(100, 30);
             this.btApply.TabIndex = 0;
@@ -82,9 +84,9 @@
             this.groupBox1.Controls.Add(this.tBoxLength);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(308, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 133);
+            this.groupBox1.Size = new System.Drawing.Size(314, 133);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Размеры заготовки";
@@ -166,9 +168,9 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Location = new System.Drawing.Point(12, 151);
+            this.groupBox3.Location = new System.Drawing.Point(308, 151);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(310, 150);
+            this.groupBox3.Size = new System.Drawing.Size(314, 150);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Положение резца";
@@ -176,7 +178,7 @@
             // checkBoxEndPopg
             // 
             this.checkBoxEndPopg.AutoSize = true;
-            this.checkBoxEndPopg.Location = new System.Drawing.Point(156, 119);
+            this.checkBoxEndPopg.Location = new System.Drawing.Point(160, 119);
             this.checkBoxEndPopg.Name = "checkBoxEndPopg";
             this.checkBoxEndPopg.Size = new System.Drawing.Size(153, 19);
             this.checkBoxEndPopg.TabIndex = 12;
@@ -188,7 +190,7 @@
             this.checkBoxStop.AutoSize = true;
             this.checkBoxStop.Checked = true;
             this.checkBoxStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxStop.Location = new System.Drawing.Point(156, 94);
+            this.checkBoxStop.Location = new System.Drawing.Point(160, 94);
             this.checkBoxStop.Name = "checkBoxStop";
             this.checkBoxStop.Size = new System.Drawing.Size(150, 19);
             this.checkBoxStop.TabIndex = 11;
@@ -197,7 +199,7 @@
             // 
             // tBoxZ
             // 
-            this.tBoxZ.Location = new System.Drawing.Point(254, 51);
+            this.tBoxZ.Location = new System.Drawing.Point(258, 51);
             this.tBoxZ.Name = "tBoxZ";
             this.tBoxZ.Size = new System.Drawing.Size(50, 23);
             this.tBoxZ.TabIndex = 10;
@@ -205,7 +207,7 @@
             // 
             // tBoxX
             // 
-            this.tBoxX.Location = new System.Drawing.Point(254, 22);
+            this.tBoxX.Location = new System.Drawing.Point(258, 22);
             this.tBoxX.Name = "tBoxX";
             this.tBoxX.Size = new System.Drawing.Size(50, 23);
             this.tBoxX.TabIndex = 9;
@@ -214,7 +216,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 54);
+            this.label3.Location = new System.Drawing.Point(160, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 15);
             this.label3.TabIndex = 8;
@@ -223,7 +225,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(156, 25);
+            this.label4.Location = new System.Drawing.Point(160, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 15);
             this.label4.TabIndex = 7;
@@ -236,7 +238,7 @@
             this.groupBox4.Controls.Add(this.radioButton3);
             this.groupBox4.Location = new System.Drawing.Point(6, 22);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(144, 102);
+            this.groupBox4.Size = new System.Drawing.Size(148, 102);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Нуль системы";
@@ -276,11 +278,22 @@
             this.radioButton3.Text = "На торце заготовки";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::G_Code_Postprocessor.Properties.Resources.InstallPiece;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(290, 290);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // UninstallPieceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 361);
+            this.ClientSize = new System.Drawing.Size(634, 361);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btBack);
@@ -298,6 +311,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,5 +339,6 @@
         private RadioButton radioButton4;
         private RadioButton radioButton1;
         private RadioButton radioButton3;
+        private PictureBox pictureBox1;
     }
 }

@@ -43,7 +43,8 @@ namespace G_Code_Postprocessor
             transitions[index].uninstall.Z = (float)Convert.ToDouble(tBoxZ.Text);
             transitions[index].uninstall.Stop = checkBoxStop.Checked;
             transitions[index].uninstall.End = checkBoxEndPopg.Checked;
-            transitions[index].description = String.Format("Снять заготовку");
+            transitions[index].description = String.Format("Снять заготовку, резец отвести на X={0:f3}, Z={1:f3} от нуля",
+                transitions[index].uninstall.X, transitions[index].uninstall.Z);
 
             this.Hide();
         }

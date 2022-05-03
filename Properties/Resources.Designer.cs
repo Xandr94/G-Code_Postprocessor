@@ -63,6 +63,16 @@ namespace G_Code_Postprocessor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Facing {
+            get {
+                object obj = ResourceManager.GetObject("Facing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap InstallPiece {
             get {
                 object obj = ResourceManager.GetObject("InstallPiece", resourceCulture);

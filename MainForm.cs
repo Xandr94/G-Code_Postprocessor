@@ -135,7 +135,8 @@ namespace G_Code_Postprocessor
         private void btGenerateGcode_Click(object sender, EventArgs e)
         {
             UpdateTransitions();
-            string text = string.Empty;
+            Clipboard.Clear();
+            string text = " ";
             for (int i = 0; i < tBoxGcode.Lines.Length; i++)
                 text += tBoxGcode.Lines[i] + Environment.NewLine;
             Clipboard.SetText(text);
@@ -186,6 +187,8 @@ namespace G_Code_Postprocessor
             pbSafetyScreen.Height = this.Height-45;
             btOk.Left -= 10;
             btOk.Top -= 10;
+
+            comboBox1.SelectedIndex = 0;
         }
 
         private void lBoxTransitions_KeyDown(object sender, KeyEventArgs e)

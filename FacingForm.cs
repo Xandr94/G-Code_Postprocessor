@@ -64,8 +64,8 @@ namespace G_Code_Postprocessor
             transitions[index].facing.MachinePause = checkBoxPause.Checked;
             transitions[index].facing.ToolNumber = (int)Convert.ToDouble(tBoxToolNumber.Text);
             transitions[index].facing.ToolDepartureNumber = (int)Convert.ToDouble(tBoxToolDepartureNumber.Text);
-            transitions[index].description = String.Format("Торцевать, выдерживая L={0:f3} предварительно",
-                transitions[index].facing.L);
+            transitions[index].description = String.Format("Торцевать, выдерживая L={0:f3} до D={1:f3} с отступом B={2:f3}",
+                transitions[index].facing.L, transitions[index].facing.D, transitions[index].facing.B);
 
             this.Hide();
         }

@@ -95,11 +95,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 112);
+            this.label13.Location = new System.Drawing.Point(6, 102);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 15);
+            this.label13.Size = new System.Drawing.Size(135, 30);
             this.label13.TabIndex = 8;
-            this.label13.Text = "Отступ от торца (B)";
+            this.label13.Text = "Отступ от торца \r\nисходной заготовки (B)";
             // 
             // tBoxDpiece
             // 
